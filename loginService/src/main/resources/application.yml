@@ -1,0 +1,28 @@
+server:
+  port: 8081  # Auth service runs on port 8081
+
+spring:
+  application:
+    name: auth-service
+    
+  # PostgreSQL Database Configuration
+  datasource:
+    url: jdbc:postgresql://localhost:5433/mindfulAidB  # ← Change this
+    username: root  # ← Change this
+    password: 1234  # ← Change this
+    driver-class-name: org.postgresql.Driver
+    
+  # JPA/Hibernate Configuration
+  jpa:
+    hibernate:
+      ddl-auto: update  # Creates/updates tables automatically
+    show-sql: true  # Shows SQL queries in console (helpful for debugging)
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true  # Makes SQL queries readable
+
+# JWT Configuration
+jwt:
+  secret: your-secret-key-must-be-at-least-256-bits-long-change-this-in-production  # ← Change this
+  expiration: 86400000  # Token valid for 24 hours (in milliseconds)

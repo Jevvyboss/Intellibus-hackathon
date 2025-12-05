@@ -1,0 +1,22 @@
+server:
+  port: 8080  # Gateway port
+
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      routes:
+        - id: backend-service-route
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/**
+          # Optional filters:
+          # filters:
+          #   - StripPrefix=1  # This removes /api from the path before forwarding
+
+# Enable debug logging to see what's happening
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    reactor.netty: DEBUG  # ← Fixed: removed the extra "UG"
